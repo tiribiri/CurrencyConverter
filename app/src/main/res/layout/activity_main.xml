@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Écran unique : zone d'affichage (haut, 45 %) + clavier numérique (bas) -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fond_clavier">
+
+    <!-- Ligne de séparation à 45 % de la hauteur de l'écran -->
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineSeparation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <!-- Fond turquoise de la zone d'affichage -->
+    <View
+        android:id="@+id/viewFondHaut"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/turquoise_fond"
+        app:layout_constraintBottom_toTopOf="@id/guidelineSeparation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/titre"
+        android:textColor="@color/blanc"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Devise source + montant saisi -->
+    <Spinner
+        android:id="@+id/spDeviseSource"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitre" />
+
+    <TextView
+        android:id="@+id/tvMontant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="end"
+        android:maxLines="1"
+        android:text="@string/montant_initial"
+        android:textColor="@color/blanc"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@id/spDeviseSource"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spDeviseSource"
+        app:layout_constraintTop_toTopOf="@id/spDeviseSource" />
+
+    <!-- Bouton d'inversion des devises -->
+    <ImageButton
+        android:id="@+id/btnInverser"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/inverser"
+        android:src="@drawable/ic_swap"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spDeviseSource" />
+
+    <!-- Devise cible + résultat -->
+    <Spinner
+        android:id="@+id/spDeviseCible"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnInverser" />
+
+    <TextView
+        android:id="@+id/tvResultat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="end"
+        android:maxLines="1"
+        android:textColor="@color/blanc"
+        android:textSize="48sp"
+        app:layout_constraintBottom_toBottomOf="@id/spDeviseCible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/spDeviseCible"
+        app:layout_constraintTop_toTopOf="@id/spDeviseCible" />
+
+    <Button
+        android:id="@+id/btnConvertir"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/convertir"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spDeviseCible" />
+
+    <!-- Clavier numérique : 4 lignes x 3 colonnes -->
+    <TableLayout
+        android:id="@+id/tableClavier"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:stretchColumns="*"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guidelineSeparation">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn7"
+                style="@style/ToucheClavier"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/btn8"
+                style="@style/ToucheClavier"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/btn9"
+                style="@style/ToucheClavier"
+                android:text="9" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn4"
+                style="@style/ToucheClavier"
+                android:text="4" />
+
+            <Button
+                android:id="@+id/btn5"
+                style="@style/ToucheClavier"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/btn6"
+                style="@style/ToucheClavier"
+                android:text="6" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btn1"
+                style="@style/ToucheClavier"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/btn2"
+                style="@style/ToucheClavier"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/btn3"
+                style="@style/ToucheClavier"
+                android:text="3" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <Button
+                android:id="@+id/btnC"
+                style="@style/ToucheClavier"
+                android:text="@string/touche_c"
+                android:textColor="@color/rouge_clair" />
+
+            <Button
+                android:id="@+id/btn0"
+                style="@style/ToucheClavier"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/btnPoint"
+                style="@style/ToucheClavier"
+                android:text="@string/touche_point" />
+        </TableRow>
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

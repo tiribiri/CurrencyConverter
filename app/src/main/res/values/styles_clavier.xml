@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Style commun des touches du clavier : sans bordure, 32sp, chiffres turquoise.
+         Hérite du style borderless (équivalent de ?android:attr/borderlessButtonStyle). -->
+    <style name="ToucheClavier" parent="android:Widget.Material.Button.Borderless">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:textColor">@color/turquoise_touche</item>
+    </style>
+</resources>
